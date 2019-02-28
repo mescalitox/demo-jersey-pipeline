@@ -33,13 +33,18 @@ pipeline {
 //			}						
 //		}
 		stage('SonarQube analysis') {
-//			steps {
-				def scannerHome = tool 'sonarqubeScanner';
-				withSonarQubeEnv('SonarQube') {
-			      sh "${scannerHome}/bin/sonar-scanner"
+			steps {
+				script{
+				    
+				
+
+					def scannerHome = tool 'sonarqubeScanner';
+					withSonarQubeEnv('SonarQube') {
+				      sh "${scannerHome}/bin/sonar-scanner"
+				    }
 			    }
 					//sh 'mvn clean package sonar:sonar'
-//			}
+			}
 		}
 //		stage("Quality Gate"){
 //			 steps {
