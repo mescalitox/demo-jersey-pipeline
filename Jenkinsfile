@@ -27,26 +27,26 @@ pipeline {
 				}
 			}
 		}
-		stage ('sonar') {
-			steps {
-				sh 'mvn sonar:sonar' 
-			}						
-		}
+//		stage ('sonar') {
+//			steps {
+//				sh 'mvn sonar:sonar' 
+//			}						
+//		}
 		stage('SonarQube analysis') {
-			steps {
+//			steps {
 				def scannerHome = tool 'sonarqubeScanner';
 				withSonarQubeEnv('SonarQube') {
 			      sh "${scannerHome}/bin/sonar-scanner"
 			    }
 					//sh 'mvn clean package sonar:sonar'
-			}
+//			}
 		}
-		stage("Quality Gate"){
-			 steps {
-				timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-					waitForQualityGate abortPipeline: true
-				}
-			}
-	 	}
+//		stage("Quality Gate"){
+//			 steps {
+//				timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+//					waitForQualityGate abortPipeline: true
+//				}
+//			}
+//	 	}
 	}
 }
